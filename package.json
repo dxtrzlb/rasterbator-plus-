@@ -1,8 +1,8 @@
-{
+﻿{
   "name": "rasterbator-app",
   "version": "1.0.2",
   "description": "Modern Rasterbator Desktop App",
-  "author": "Maarten", 
+  "author": "Maarten",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
