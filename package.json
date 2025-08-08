@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "rasterbator-app",
   "version": "1.0.2",
   "description": "Modern Rasterbator Desktop App",
@@ -33,3 +33,6 @@
     "electron-builder": "^24.11.0"
   }
 }
+
+
+
