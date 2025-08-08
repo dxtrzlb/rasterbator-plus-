@@ -1,20 +1,6 @@
-# Rasterbator+
+# Rasterbator+ (Electron)
+- Install: `npm install`
+- Run dev: `npm start`
+- Build portable EXE (Windows): `npm run dist`
 
-A modern cross-platform Rasterbator built with Electron.
-
-## Features
-- Load high-resolution images
-- Tiled PDF export with margins, overlap, and paper size
-- Halftone effect preview
-- Portable `.exe` support (no installer needed)
-
-## Getting Started
-```bash
-npm install
-npm start
-```
-
-## Build Portable EXE (Windows only)
-```bash
-npm run dist
-```
+Paper sizes are in points (A4 = 595x842). Icon omitted in CI to avoid failures; add an ICO later to `build.win.icon` when ready.

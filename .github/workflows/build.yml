@@ -1,9 +1,12 @@
-name: Build Rasterbator Portable EXE
+name: Build and Release Rasterbator Portable EXE
 
 on:
   push:
     tags:
       - 'v*'
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -11,21 +14,36 @@ jobs:
 
     steps:
       - name: 🧾 Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🧰 Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
       - name: 📦 Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: 🛠 Build portable EXE
-        run: npm run dist
+      - name: 🔎 Verify project files
+        run: |
+          dir
+          type package.json
 
-      - name: 🚀 Upload artifact
+      - name: 🛠 Build portable EXE (electron-builder)
+        run: npx electron-builder --win portable
+        env:
+          CI: true
+
+      - name: 📦 Upload artifact (Actions)
         uses: actions/upload-artifact@v4
         with:
           name: rasterbator-portable
           path: dist/*.exe
+
+      - name: 📤 Create GitHub Release and attach EXE
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
